@@ -1,6 +1,8 @@
 #include "mbed.h"
 
 PwmOut PWM1(D6);
+AnalogOut aout(PA_4);
+
 int main()
 {
    float sample[400];
@@ -20,6 +22,7 @@ int main()
    while (1)
    {
       PWM1.pulsewidth_us(4000 * sample[cnt]);
+      aout = PWM1;
       cnt++;
       if (cnt == 400) cnt = 0;
       ThisThread::sleep_for(10ms);
